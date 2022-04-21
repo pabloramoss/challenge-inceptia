@@ -1,11 +1,12 @@
-import type { NextPage } from 'next'
-import { useEffect, useState } from 'react'
+import type { NextPage } from "next"
+import { useEffect, useState } from "react"
 import { getClients, getInboundCase, login } from "../utils/api"
-import { parseDate } from '../utils'
-import Clients from '../components/Clients'
+import { parseDate } from "../utils"
+import Clients from "../components/Clients"
 import Dashboard from "../components/Dashboard"
 import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
+import Navbar from "../components/Navbar"
 
 const Home: NextPage = () => {
   const [token, setToken] = useState<string>("")
@@ -37,37 +38,39 @@ const Home: NextPage = () => {
     })
   }
 
-  if (!isLogin) return <button className='bg-slate-300 px-3 font-semibold' onClick={getData}>Login</button>
+  if (!isLogin) return <button className="bg-slate-300 px-3 font-semibold" onClick={getData}>Login</button>
 
   return (
-    <div>
-      <div className='flex gap-4 mt-10'>
-        <div>
-          <p className='text-xs'>Desde</p>
+    <div className="text-white justify-center container mx-auto mb-10">
+      <Navbar />
+      <button onClick={()=> console.log(inboundCase)}>ver cases</button>
+      <div className="flex gap-4 mt-10 ml-2">
+        <div className="ml-2">
+          <p className="py-2 text-xs">Desde</p>
           <DatePicker 
             dateFormat="dd/MM/yyyy" 
-            className='text-center bg-slate-100 rounded-md border border-sky-500' 
+            className="w-40 font-semibold text-center bg-slate-100 rounded-md border border-sky-500 text-slate-500"
             selected={startDate} 
             onChange={(date) => setStartDate(date)} 
           />
         </div>
         <div>
-          <p className='text-xs'>Hasta</p>
+          <p className="py-2 text-xs">Hasta</p>
           <DatePicker 
             dateFormat="dd/MM/yyyy" 
-            className='text-center bg-slate-100 rounded-md border border-sky-500' 
+            className="w-40 font-semibold text-center bg-slate-100 rounded-md border border-sky-500 text-slate-500"
             selected={endDate} 
             onChange={(date) => setEndDate(date)} 
           />
         </div>
         <button 
-          className='px-6 rounded-md bg-slate-200 self-end' 
+          className="px-6 rounded-md bg-slate-700 self-end"
           onClick={()=>handleFilter(startDate, endDate)}
         >
           Filtrar
         </button>
       </div>
-      <div className='flex mt-10'>
+      <div className="flex mt-4 bg-slate-800 justify-self-center">
         <Clients clients={clients} />
         <Dashboard inboundCase={inboundCase} />
       </div>

@@ -1,11 +1,9 @@
 import ClientSearchBox from "./ClientSearchBox";
-
 interface Props {
   clients: any;
 }
 
 const Clients: React.FC<Props> = ({ clients }) => {
-  
   return (
     <div className="flex mx-4 rounded-md bg-slate-700">
       <div className="flex flex-col w-40">

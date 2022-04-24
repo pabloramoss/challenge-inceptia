@@ -3,7 +3,6 @@ interface Props {
 }
 
 const Chat: React.FC<Props> = ({ responses }) => {
-  
   return (
     <div className="mt-4 w-80">
       <p className="text-center rounded-t-md py-1 bg-slate-600 font-semibold">CHAT PREVIEW</p>

@@ -23,7 +23,7 @@ const Dashboard: React.FC<Props> = ({ inboundCase }) => {
       </div>
       <div className="grid max-h-80 overflow-y-auto text-center">
         {
-          inboundCase.results.map((item: any) => (
+          inboundCase.map((item: any) => (
             <div onClick={()=> setSelectedCase(item.case_log.responses)} 
               key={item.id} 
               className="px-4 hover:cursor-pointer hover:bg-neutral-500 grid py-2 grid-cols-9 bg-slate-600 text-xs border border-gray-700"
@@ -38,8 +38,9 @@ const Dashboard: React.FC<Props> = ({ inboundCase }) => {
               <p className={`min-w-[200px] ${item.case_result.name === "Cliente no encontrado en DB" ? "no-client" : "" }`}>
                 {item.case_result.name}
               </p>
-            </div>))
-            }
+            </div>
+          ))
+        }
       </div>
       <Chat responses={selectedCase} />
     </div>

@@ -14,6 +14,8 @@ async function login() {
         password,
       },
     })
+    console.log(response)
+    console.log(response.data)
     return response.data.token
   } catch (error) {
     console.error(error)
